@@ -1,7 +1,6 @@
 import java.util.List;
 import java.util.stream.Stream;
-import java.util.function.Predicate;
-import java.util.function.Supplier;
+import java.util.stream.IntStream;
 
 public class Oppg3 {
 	
@@ -59,8 +58,17 @@ public class Oppg3 {
 		System.out.println("alle ansatte: ");
 		ansatte.stream().forEach(System.out::println);
 		
-		//g
-		List<Ansatt> lavestLonn = ansatte.stream()
-			.filter(a -> a.getAarslonn == ansa
+		//g) Finn den/de ansatte som har lavest lønn.
+
+		//h)Finn ut summen av alle heltall i [1, 1000> som er delelig med 3 eller 5.
+		List<Integer> tall = IntStream.rangeClosed(1, 1000) //"closed"-inklusiv
+			.boxed() //fra intstream til stream
+			.toList();
+			
+		int sumDeleligTreFem = tall.stream()
+			.mapToInt(Integer::intValue)
+			.filter(n -> n % 3 == 0 || n % 5 == 0)
+			.sum();
+		System.out.println("sum av tall i intervall [1,1000] som er delelig paa 3 eller 5: " + sumDeleligTreFem);
 	}
 }
