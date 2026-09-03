@@ -1,6 +1,7 @@
 import java.util.List;
 import java.util.stream.Stream;
 import java.util.stream.IntStream;
+import java.util.Optional;
 
 public class Oppg3 {
 	
@@ -58,9 +59,22 @@ public class Oppg3 {
 		System.out.println("alle ansatte: ");
 		ansatte.stream().forEach(System.out::println);
 		
-		//g) Finn den/de ansatte som har lavest lønn.
+		//g
+		int lavesteLonn = ansatte.stream()
+			.mapToInt(a -> a.getAarslonn())
+			.min()
+			.orElseThrow(); //omform til optional i tilfelle tom liste
+			
+		List<Ansatt> lavestLonnedeAnsatte = ansatte.stream()
+			.filter(a -> a.getAarslonn() == lavesteLonn)
+			.toList();
+			
+		System.out.println("lavest lonnede ansatt(e) :");
+		for (Ansatt a : lavestLonnedeAnsatte) {
+			System.out.println(a);
+		}
 
-		//h)Finn ut summen av alle heltall i [1, 1000> som er delelig med 3 eller 5.
+		//h
 		List<Integer> tall = IntStream.rangeClosed(1, 1000) //"closed"-inklusiv
 			.boxed() //fra intstream til stream
 			.toList();
