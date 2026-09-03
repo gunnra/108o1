@@ -63,7 +63,7 @@ public class Oppg3 {
 		int lavesteLonn = ansatte.stream()
 			.mapToInt(a -> a.getAarslonn())
 			.min()
-			.orElseThrow(); //omform til optional i tilfelle tom liste
+			.orElseThrow();
 			
 		List<Ansatt> lavestLonnedeAnsatte = ansatte.stream()
 			.filter(a -> a.getAarslonn() == lavesteLonn)
